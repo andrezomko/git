@@ -9,36 +9,6 @@
 
 ---------------
 
-## Creating GH repo:
-
-- **cria repo no GH**
--  navega localmente ate o diretório do repo local que quero sincronizar com o repo git
-```
-- git init 
-```
-
-
-**Conectar ao repositório remoto**
-```
-git remote add origin https://github.com/seu-usuario/seu-repositorio.git
-```
-
-
-**Adicionar os arquivos ao repositório local:**
-```
-git add .
-```
-
-
-**Criar o primeiro commit**
-```
-git commit -m "Initial commit with Obsidian notes"
-```
-
-**Enviar para o GitHub**
-```
-git push -u origin master
-```
 
 
 ## Sync changes:
@@ -48,66 +18,104 @@ git commit -m "mensagem do commit"
 git push
 ```
 
+---
 
-## Pulling att from GH:
+## ## Creating a GitHub repository (SSH):
+
+- **Create a repository on GitHub**
+- Navigate locally to the directory of the local repository you want to sync with the GitHub repository:
+
+```
+- git init 
+```
+
+
+**Connect to the remote repository (using SSH):**
+```
+git remote add origin https://github.com/seu-usuario/seu-repositorio.git
+```
+
+
+**Add the files to the local repository:**
+```
+git add .
+```
+
+
+**Create the first commit:**
+```
+git commit -m "Initial commit with Obsidian notes"
+```
+
+**Push to GitHub:**
+```
+git push -u origin master
+```
+
+---
+
+## Pulling updates from GitHub (SSH):
 
 ```
 git pull origin main
 ```
-- Buscar as alterações da branch `main` no repositório remoto.
-- Mesclar essas alterações com a sua branch `main` local.
+- Fetch the changes from the `main` branch in the remote repository.
+- Merge these changes with your local `main` branch.
 
 ```
 git fetch origin
 ```
-trará as alterações do repositório remoto sem mesclá-las, permitindo que você revise antes de mesclar manualmente, se desejar.
+- This will fetch changes from the remote repository without merging them, allowing you to review the changes before merging manually if needed.
 
+---
 ## Branch:
 
-verificar branch atual
+Check the current branch:
 ```
  git branch
 ```
-- se nao retornar nada, ou nao tem branch, ou a branch ainda esta vazia, necessitando o **primeiro commit**
+- If no return, either there is no branch or the branch is still empty, needing the **first commit**.
 
-##### **Renomear a branch local `master` para `main`:**
+##### **Rename the local `master` branch to `main`:**
 ```
 git branch -m master main
 ```
 
-**Configurar o branch remoto para `main`:**
+**Set the remote branch to `main`:**
 ```
 git push origin main
 ```
 
-**Verifique o branch remoto**
+**Check the remote branches:**
 ```
 git branch -a
 ```
 
-##### REBASE:
-Fazer um Pull da branch `main`
+---
+### REBASE:
+
+- Pull the `main` branch with rebase:
 ```
 git pull origin main --rebase
 ```
 
- ##### Resolver Conflitos (se houver)
- 
-Se houverem conflitos entre as suas mudanças locais e as mudanças no repositório remoto, o Git irá parar o processo de rebase e te pedirá para resolver esses conflitos. Para resolver:
+-> Resolve conflicts (if any):
 
-Abra os arquivos com conflitos, edite-os e resolva as diferenças.
+- If there are conflicts between your local changes and the changes in the remote repository, Git will stop the rebase process and ask you to resolve the conflicts. To resolve them:
 
-Após resolver, adicione os arquivos corrigidos:
+- Open the conflicting files, edit them, and resolve the differences.
+
+- After resolving, add the resolved files:
 ```
 git add <arquivo_com_conflito>
 ```
 
-Finalize o rebase:
+- Finish the rebase:
 ```
 git rebase --continue
 ```
 
-
+---
 
 ## Remove GH repo:
 
@@ -115,16 +123,17 @@ git rebase --continue
 git remote remove origin
 ```
 
-Caso haja um repositório Git e você queira desvinculá-lo, você pode remover o diretório `.git`:
+- If you want to completely remove the Git repository from your local directory, you can remove the `.git` directory:
 
 `rm -rf .git`
 
-Isso removerá todos os dados relacionados ao Git dentro da pasta, desfazendo qualquer associação com o controle de versão.
+- This will remove all Git-relatrd data from the folder, undoing any version control association.
+
+---
 
 ## Generate GitHub SSH key:
 
-
-Check if you already have an SSH key
+- Check if you already have an SSH key
 
 ```
 ls -al ~/.ssh
